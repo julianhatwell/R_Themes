@@ -1,5 +1,7 @@
 # My First Theme
 # a nice colour palette
+library(lattice)
+library(ggplot2)
 myPal <- c("#8DD3C7", "#B0A8B3", "#9FB5D6", "#9EC0FA", "#DB8072")
 myPalDark <- c("#4D8377", "#504853", "#3F5576", "#3E409A", "#7B2012")
 myPalContrasts <- c(myPalDark[1], myPalDark[5], myPal[2], myPal[4]
