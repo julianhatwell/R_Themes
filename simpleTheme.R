@@ -12,5 +12,6 @@ MyLatticeTheme <- list(
   , box.rectangle = list(col = "black", lwd = 1.5)
   , box.dot = list(pch = 15, cex = 0.8, alpha = 0.5)
   , plot.line = list(col = c("grey40", "darkblue", "violetred2"))
+  , add.line = list(col = "grey70", lty = 2)
   , strip.background = list(col="transparent")
 )
