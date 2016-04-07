@@ -1,6 +1,8 @@
 # Simple Theme
 # Simple Lattice Theme
 MyLatticeFont <- list(font = 1, cex = 1)
+MyStripFont <- list(font = 1, fontface = 2, cex = 1)
+MyLatticeStrip = strip.custom(par.strip.text = MyStripFont)
 MyLatticeTheme <- list(
   par.main.text = MyLatticeFont
   , par.xlab.text = MyLatticeFont
@@ -14,4 +16,6 @@ MyLatticeTheme <- list(
   , plot.line = list(col = c("grey40", "darkblue", "violetred2"))
   , add.line = list(col = "grey70", lty = 2)
   , strip.background = list(col="transparent")
+  , strip.shingle = list(alpha = 0.2
+                         , col = c("#44a4ff", "#dd7766", "#55cc77"))
 )
