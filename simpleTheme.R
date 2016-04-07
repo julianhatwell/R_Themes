@@ -1,7 +1,7 @@
 # Simple Theme
 # Simple Lattice Theme
 MyLatticeFont <- list(font = 1, cex = 1)
-MyStripFont <- list(font = 1, fontface = 2, cex = 1)
+MyStripFont <- list(font = 1, cex = 0.8)
 MyLatticeStrip = strip.custom(par.strip.text = MyStripFont)
 MyLatticeTheme <- list(
   par.main.text = MyLatticeFont
