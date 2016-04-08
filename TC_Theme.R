@@ -15,7 +15,8 @@ myPalFourFold <- c(myPalContrasts[6], myPalContrasts[1]
                    , myPalContrasts[2], myPalContrasts[9])
 
 # applied to lattice
-MyLatticeFont <- list(font = 1, cex = 1, col = myPalDark[2])
+MyLatticeFont <- list(font = 1, fontsize = 12, col = myPalDark[2])
+MyStripFont <- list(font = 1, cex = 0.8, col = myPalDark[2])
 
 MyLatticeTheme <- list(
   par.main.text = MyLatticeFont
