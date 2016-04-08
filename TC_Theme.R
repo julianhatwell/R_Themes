@@ -23,6 +23,7 @@ MyLatticeTheme <- list(
   , par.xlab.text = MyLatticeFont
   , par.ylab.text = MyLatticeFont
   , axis.text = MyLatticeFont
+  , add.text = MyLatticeFont
   , fontsize = list(text = 11, points = 7)
   , plot.symbol = list(col = myPalDark[5], pch = 19, alpha = 0.5, cex = 0.75)
   , box.umbrella = list(col = myPalDark[5], lty = 2, lwd = 1.25)
