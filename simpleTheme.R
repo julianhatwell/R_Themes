@@ -10,6 +10,7 @@ MyLatticeTheme <- list(
   , axis.text = MyLatticeFont
   , fontsize = list(text = 11, points = 7)
   , plot.symbol = list(col = "#44a4ff", pch = 19, alpha = 0.5, cex = 0.75)
+  , plot.polygon = list(col = "#44a4ff")
   , box.umbrella = list(col = "black", lty = 2, lwd = 1.25)
   , box.rectangle = list(col = "black", lwd = 1.5)
   , box.dot = list(col = "#44a4ff", pch = 15, cex = 0.8, alpha = 0.5)
