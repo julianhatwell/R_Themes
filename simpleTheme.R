@@ -12,7 +12,7 @@ MyLatticeTheme <- list(
   , fontsize = list(text = 11, points = 7)
   , plot.symbol = list(col = "#44a4ff", pch = 19, alpha = 0.5, cex = 0.75)
   , plot.polygon = list(col = "#44a4ff")
-  , superpose.symbol = list(pch = c(19, 16, 17, 15, 14)
+  , superpose.symbol = list(pch = c(20, 18, 8, 13, 12)
                             , col = c("#44a4ff", "#dd7766", "#55cc77"
                                       , "violetred1", "darkblue", "grey40"))
   , box.umbrella = list(col = "black", lty = 2, lwd = 1.25)
