@@ -15,6 +15,8 @@ MyLatticeTheme <- list(
   , superpose.symbol = list(pch = c(20, 18, 8, 13, 12)
                             , col = c("#44a4ff", "#dd7766", "#55cc77"
                                       , "violetred1", "darkblue", "grey40"))
+  , superpose.polygon = list(col = c("#44a4ff", "#dd7766", "#55cc77"
+                                      , "violetred1", "darkblue", "grey40"))
   , box.umbrella = list(col = "black", lty = 2, lwd = 1.25)
   , box.rectangle = list(col = "black", lwd = 1.5)
   , box.dot = list(col = "#44a4ff", pch = 15, cex = 0.8, alpha = 0.5)
