@@ -75,3 +75,12 @@ MyLatticeTheme <- list(
   , strip.background = list(col = myPalNeut[c(2,4,6)])
   , strip.shingle = list(col = myPalNeut[c(1,3,5)])
 )
+
+# strucplot grapcons
+# TO DO implement interpolation
+shading_k <- function(observed = NULL, residuals = NULL, expected = NULL,
+                      df = NULL, col = c(k.purple, k.pink)) {
+  if (length(col) != 2) { stop("Need exactly two colors!") }
+  function(res) gpar(fill = ifelse(res > 0, col[1], col[2]))
+}
+class(shading_k) <- "grapcon_generator"
