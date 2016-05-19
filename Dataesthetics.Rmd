@@ -1,0 +1,189 @@
+---
+output: pdf_document
+---
+
+```{r prologue, include=FALSE}
+require(knitr)
+require(vcd)
+require(MASS)
+library(latticeExtra)
+
+knitr::opts_chunk$set(warning = FALSE
+                      , message = FALSE
+                      , echo = FALSE
+                      )
+
+knitr::opts_template$set(
+  fig.tile5 = list(fig.height = 5, fig.width = 5, fig.align='center')
+  , fig.tile6 = list(fig.height = 6, fig.width = 6, fig.align='center')
+  , fig.tile7 = list(fig.height = 7, fig.width = 7, fig.align='center')
+  , fig.tile8 = list(fig.height = 8, fig.width = 8, fig.align='center')
+)
+
+source("https://raw.githubusercontent.com/julianhatwell/R_Themes/master/myFirstTheme.R")
+```
+
+# Data Analytics Brainstorm
+
+### Movement Data from wearable sensors
+
+[This Report](http://julianhatwell.github.io/PracMach/) has some examples of graphs creating from streaming data from wearable movement sensors worn during a simple dumbell exercise. The participants were observed to assess if they were doing the exercise correctly or not.
+
+This data and the observed calssifications were used to train a set of prediction models, to see which model perfoms best at determining when the exercise is done correctly or incorrectly from the sensor data alone.
+
+### Commuters and Traffic
+
+Joseph Tang, Computer Science student at NUS produced [This Heatmap](http://www.comp.nus.edu.sg/~josepht/taxi.html) of taxi distributions around Singapore. 
+
+Consider something comparing traffic and commuter flows in SG and Quito at the same earth hour/opposite geographic hour.
+
+Does Ecuador have similar Open Data provided by Government organisations?
+
+### Financial tickers and forecasts
+What is going on in the financial markets on opposite sides of the world? What other streams and tickers are available besides?
+
+What is most interesting about these forecasts is they show that the future is unknown but bounded by the guessable. Future trends are connected to recent history. We can make assumptions that from one moment to the next, things are connected. The further ahead in time you travel, so the cone of uncertainty grows. The cone also changes in shape and form in real time as your present moment continually traverses the boundary
+between now and next.
+
+![forecasts](C:/Dev/Study/R/R_Themes/imagefiles/forecasts.png)
+
+### Overlay/compare weather patterns:
+
+Something that resonates locally, such as patterns of rainfall, heat and humidity.
+
+![sinsat](C:/Dev/Study/R/R_Themes/imagefiles/NASA_SEA.jpg)
+![latsat](C:/Dev/Study/R/R_Themes/imagefiles/WX_LAT.jpg)
+
+### What people are saying vs what they are doing
+The word cloud can reveal sentiment from unstructured, human generated content, such as twitter feeds and status updates.
+
+![sinwc](C:/Dev/Study/R/R_Themes/imagefiles/ec_wc.jpg)
+![latwc](C:/Dev/Study/R/R_Themes/imagefiles/sing_wc.jpg)
+
+
+### Demographics - How similar are we?
+Every individual is unique when measured along any set of continuous variables. My height and yours may be similar but not the same, my income and yours may be quite different. Each person exists in a unique combination of points along multiple continua. Each is life like a single strand on some great loom, woven and plaited together by our similarity and difference.
+
+```{r}
+parallel(~ asinh(gvhd10[c(3, 2, 4, 1, 5)])
+         , data = gvhd10, subset = Days == "13"
+         , alpha = 0.01, lty = 1
+         , ylab = c("height", "weight", "income", "age", "index"))
+```
+
+
+### Demographics - How similar are we (2)?
+What can we learn from what we share in the culture of the everyday? Market Basket Analysis can be used to examine associations between items in the daily shopping basket. Some things obviously go together, like gin and tonic, razors and shaving foam. Or [This Urban Myth](http://www.theregister.co.uk/2006/08/15/beer_diapers/), which although not true, makes a great illustration.
+
+### Aesthetic Abstract Graphs
+
+Data Analysts have to be skilled at visualisation and aesthetics. Their  visual choices make all the difference to effective communication of the data story. 
+
+Extrapolating this idea to an extreme position, can we make certain aesthetic choices over an arbitrary dataset to communicate more abstract ideas?
+
+What can we communicate with a graph alone, devoid of the usual visual cues of axes, legend and annotation?
+
+```{r, captions}
+caps = c("The mosaic plot is a common graph for visualising a multiway table or data cube. Tile sizes are proportional to the number of items in each category and coloured according to certain assumptions/expectations. Each tile is recursively split to show the proportions in each sub-category and sub-sub-category, down to the final level."
+         , "This dot grid shows the decision/classification boundary between two populations. What does the island represent?"
+         , "Taking the example of the heatmap; high and low points can be attributed different colours but also size, shape, intensity and transparency forming a whole grammar of graphics. Even the interpolation through these spectra can be smooth or stepped, depending on the data themselves."
+         , "Another example."
+)
+```
+
+```{r titmosaic, opts.label='fig.tile8', fig.cap=caps[1]}
+llm.tit <- loglm(~Age*Sex*Class+Survived, Titanic)
+mosaic(Titanic, expected = as.formula(llm.tit)
+       , labeling = FALSE, legend = FALSE)
+```
+
+```{r quadplane, opts.label='fig.tile6', fig.cap=caps[2]}
+sep.plane3 <- function(x_1, x_2) {
+  c <- (1 + x_1)^2 + (2 - x_2)^2
+  if (c == 4) return(myPalContrasts[2])
+  if (c > 4) return(myPalContrasts[3])
+  if (c < 4) return(myPalContrasts[4])
+}
+
+x1 <- seq(-5, 5, 1)
+x2 <- x1
+myGrid <- expand.grid(x1 = x1, x2 = x2)
+
+sp3 <- mapply(sep.plane3, myGrid[,1], myGrid[,2])
+xyplot(x2~x1, myGrid, pch = 19, col = sp3, cex = 4.5
+       , scales = list(draw = FALSE)
+       , xlab = NULL, ylab = NULL
+       , par.settings = list(
+         axis.line = list(col = "transparent")))
+```
+
+```{r coloursteps, opts.label='fig.tile7', fig.cap=caps[3]}
+xyplot(1:10~1:10
+       , panel = function(...) {
+         colorSweep = myPal.rangeContrasts(100)
+         for(i in 10:1) {
+            panel.xyplot(i, 1:(0+i)
+                         , pch = 15
+                         , cex = 7.758
+                         , alpha = i/11
+                          , col = colorSweep[i+2]
+                         )
+         }
+       for(i in 10:1) {
+         panel.xyplot(i, 1:(0+i)
+                      , pch = 15
+                      , cex = 5
+                      , alpha = 1/(i+0.25)
+                      , col = colorSweep[i+20]
+         )
+       }
+       for(i in 10:1) {
+         panel.xyplot(i, 1:(0+i)
+                      , pch = 15
+                      , cex = 2.5
+                      , alpha = i/10
+                      , col = colorSweep[i+60]
+         )
+       }
+       for(i in 10:1) {
+         panel.xyplot(i, 1:(0+i)
+                      , pch = 15
+                      , cex = 1.5
+                      , alpha = 4/5
+                      , col = colorSweep[i+70]
+         )
+       }
+       for(i in 10:1) {
+         panel.xyplot(i, 1:(0+i)
+                      , pch = 15
+                      , alpha = 1/(i+0.1)
+                      , col = colorSweep[i+40]
+         )
+       }
+       }
+       , scales = list(draw = FALSE)
+       , xlab = NULL, ylab = NULL
+       , par.settings = list(axis.line = list(col = "transparent")))
+```
+
+```{r squaretiful, opts.label='fig.tile5', fig.cap=caps[4]}
+xyplot(1~1
+       , panel = function(x, y, ...) {
+          colorSweep = myPal.rangeContrasts(100)
+          for(i in 52:1) {
+            panel.xyplot(x, y
+            , cex = i, pch = 15
+            , col = colorSweep[125-i]
+            , ...)
+          }
+          for(i in 29:1) {
+            panel.xyplot(x, y
+           , cex = i, pch = 12
+           , col = colorSweep[100-i]
+           , ...)
+          }
+       }
+       , scales = list(draw = FALSE)
+       , xlab = NULL, ylab = NULL
+       , par.settings = list(axis.line = list(col = "transparent")))
+```
