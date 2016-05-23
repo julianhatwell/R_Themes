@@ -76,6 +76,9 @@ MyLatticeTheme <- list(
   , strip.shingle = list(col = myPalNeut[c(1,3,5)])
 )
 
+# fourfold colour scheme
+fourfold_k <- c(k.darkred, k.purple, k.pink, k.brightblue, k.darkred, k.purple)
+
 # strucplot grapcons
 # TO DO implement interpolation
 shading_k <- function(observed = NULL, residuals = NULL, expected = NULL,
