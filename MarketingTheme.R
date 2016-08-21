@@ -41,15 +41,23 @@ MyLatticeStrip = strip.custom(par.strip.text = MyLatticeFont)
 MyLatticeScale = list(tck = c(0.25, 0))
 
 # applied to ggplot2
-myGgTheme <- theme(plot.title = element_text(colour = myPalDark[6], size = 10)
-                   , axis.title = element_text(colour = myPalDark[6], size = 10)
+myGgTheme <- theme(plot.title = element_text(colour = myPalDark[6], size = 14)
+                   , axis.title = element_text(colour = myPalDark[6], size = 12)
                    , axis.text = element_text(colour = myPalDark[6], size = 10)
                    , axis.line = element_line(colour = myPalDark[6], size = 0.5)
                    , axis.ticks = element_line(colour = myPalDark[6], size = 0.5)
                    , panel.border = element_rect(colour = "transparent")
+                   , strip.background = element_rect(colour = "transparent"
+                                                     , fill = myPal[4])
                    , legend.title = element_text(colour = myPalDark[6])
                    , legend.text = element_text(colour = myPalDark[6]))
 
 myGgFillScale <- scale_fill_manual(values = c(myPal[8], myPal[2]))
 myGgColourScale <- scale_colour_manual(values = c(myPal[8], myPal[2]))
-myGgColourGradient <- scale_color_gradient(low = myPal[1], high = myPalDark[1])
+myGgPinkGradient <- scale_color_gradient(low = myPal[1], high = myPalDark[1])
+myGgSeaGradient <- scale_color_gradient(low = myPal[2], high = myPalDark[2])
+myGgSapphireGradient <- scale_color_gradient(low = myPal[3], high = myPalDark[3])
+myGgHeatGradient <- scale_color_gradient2(low = myPal[3]
+                                              , mid = myPal[2]
+                                              , high = myPalDark[1]
+                                              , midpoint = 3000)
