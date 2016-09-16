@@ -19,6 +19,7 @@ MyLatticeFont <- list(font = 1, cex = 1, col = myPalDark[6])
 
 MyLatticeTheme <- list(
   par.main.text = MyLatticeFont
+  , par.sub.text = MyLatticeFont
   , par.xlab.text = MyLatticeFont
   , par.ylab.text = MyLatticeFont
   , axis.text = MyLatticeFont
@@ -31,7 +32,8 @@ MyLatticeTheme <- list(
   , box.rectangle = list(fill = myPal.range(100)[3], col = myPalDark[5], lwd = 1.5)
   , box.dot = list(col = myPalDark[5], pch = 15, cex = 0.8, alpha = 0.5)
   , superpose.line = list(col = myPalContrasts, lwd = 2)
-  , superpose.symbol = list(col = myPalContrasts)
+  , superpose.symbol = list(col = myPalContrasts, pch = 19, cex = 0.75)
+  , superpose.polygon = list(col = myPalContrasts)
   , axis.line = list(col = myPalDark[6])
   , strip.background = list(col=myPal.range(100)[3])
   , strip.border = list(col = myPalDark[6])
